@@ -1,0 +1,4 @@
+rutu 10000
+rutu 10000
+priyank 500
+hrushi 500
