@@ -1,0 +1,71 @@
+ADDITION:
+
+CODE:
+.model small
+.stack 100
+.data
+a dw 1234h b dw 1023h
+.code
+.startup
+mov ax, @data mov ds,ax
+mov ax,a mov bx,b add ax
+mov ah,4ch
+int 21H
+end
+
+SUBTRACTION:-
+
+
+CODE:
+.model small
+.data
+a dw 1206h b dw 1204h
+.code
+.startup
+mov ax, @data mov ds,ax
+mov ax,a
+mov bx,b
+Sub ax
+mov ah,4ch int 21H
+end
+
+
+MULTIPLICATION
+CODE:
+DATA SEGMENT
+NUM DW 0002h,0002h
+PROD DW 2 DUP(0) 
+DATA ENDS
+CODE SEGMENT
+ASSUME 
+CS:CODE,DS:DATA START: 
+MOV AX,DATA
+MOV DS,AX
+LEA SI,NUM ; SI pointed to the Multiplicand
+MOV AX,[SI] ; Multiplicand has to be in AX register
+MOV BX,[SI+2] ; SI+2 pointed to the Multiplier and move it to BX MUL BX ;Perform the multiplication
+MOV PROD,AX ;32 bit product stored in DX-AX registers
+MOV PROD+2,DX 
+MOV AH,4CH
+INT 21H 
+CODE ENDS 
+END START
+
+DIVISION:
+CODE:
+DATA SEGMENT
+NUM DW 0002h,0002h
+PROD DW 2 DUP(0) 
+DATA ENDS
+CODE SEGMENT
+ASSUME CS:CODE,DS:DATA START: 
+MOV AX,DATA
+MOV DS,AX
+LEA SI,NUM ; SI pointed to the Multiplicand
+MOV AX,[SI] ; Multiplicand has to be in AX register
+MOV BX,[SI+2] ; SI+2 pointed to the Multiplier and move it to BX DIV BX ;Perform the multiplication
+MOV PROD,AX ;32 bit product stored in DX-AX registers
+MOV PROD+2,DX MOV AH,4CH
+INT 21H 
+CODE ENDS 
+END START

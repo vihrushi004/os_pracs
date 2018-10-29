@@ -1,0 +1,17 @@
+.model small
+.stack 100h
+.startup
+.data
+.code
+mov ax,@data
+mov ds,ax
+up:mov ah,01h
+int 21h
+cmp al,30h
+je endd
+jmp up
+endd:mov ah,4ch
+int 21h
+end
+
+

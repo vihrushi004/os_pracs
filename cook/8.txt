@@ -1,0 +1,85 @@
+ADD:
+data segment
+a db 09h
+b db 02h
+c dw ?
+data ends
+ 
+code segment
+assume cs:code, ds:data
+start: 
+mov ax,data
+mov ds,ax
+mov ax,0000h
+mov bx,0000h
+mov al,a
+mov bl,b
+mul b
+mov c,ax
+int 3
+code ends
+end start
+
+DIVIDE:
+data segment
+a db 28h
+b db 02h
+c dw ?
+data ends
+ 
+code segment
+assume cs:code, ds:data
+start: 
+mov ax,data
+mov ds,ax
+mov ax,0000h
+mov bx,0000h
+mov al,a
+mov bl,b
+div b
+mov c,ax
+int 3
+code ends
+end start
+
+MULTIPLY
+data segment
+a db 09h
+b db 02h
+c dw ?
+data ends
+ 
+code segment
+assume cs:code, ds:data
+start: 
+mov ax,data
+mov ds,ax
+mov ax,0000h
+mov bx,0000h
+mov al,a
+mov bl,b
+mul b
+mov c,ax
+int 3
+code ends
+end start
+
+SUB:
+data segment
+a db 2Ah
+b db 13h
+c dw ?
+data ends
+ 
+code segment
+assume cs:code,ds:data
+start:
+mov ax,data
+mov ds,ax
+mov al,a
+mov bl,b
+sub al,bl
+mov c,ax
+int 3
+code ends
+end start

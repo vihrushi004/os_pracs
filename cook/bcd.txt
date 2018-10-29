@@ -1,0 +1,60 @@
+PROGRAM:
+
+.model small
+.stack 100
+.code
+.startup
+mov ax,0ffffh
+mov bx,0000
+mov dh,0
+l9: cmp ax,10000
+	jb l2
+	 sub ax,10000
+	inc dh
+	 jmp l9
+l2: cmp ax,1000
+	jb l4
+	sub ax,1000
+	add bx,1000h
+	jmp l2
+l4: cmp ax,100
+	jb l6
+	sub ax,100
+	add bx,100h
+	jmp l4
+l6: cmp ax,10
+	jb l8
+	sub ax,10
+	add bx,10h
+	jmp l6
+l8: add bx,ax
+	mov ah,02
+	mov cx,0204h
+go: rol dh,cl
+	mov dl,dh
+	and dl,0fh
+	add dl,30h
+	int 21h
+	dec ch
+	jnz go
+	mov ch,04h
+	mov cl,04h
+l12: rol bx,cl
+	mov dl,bl
+	and dl,0fh
+cmp dl,09
+	jbe l14
+	add dl,07
+l14: add dl,30h
+	mov ah,02
+	int 21h
+	dec ch
+	jnz l12
+	mov ah,4ch
+	int 21h
+	end
+
+
+Atharva college of engineering 2017-18 | 
+
+
